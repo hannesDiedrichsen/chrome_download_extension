@@ -17,7 +17,7 @@ chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
 
 
 // Open downloaded PDF
-// TODO: Find alternative as chrome is not allow to open file without user interaction
+// TODO: Find alternative as chrome does not allow to open file without user interaction
 chrome.downloads.onChanged.addListener(function(change) {
     if (change.state && change.state.current === "complete") {
         console.log("OPEN PDF NOW")
