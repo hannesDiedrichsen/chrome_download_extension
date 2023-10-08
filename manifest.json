@@ -4,10 +4,11 @@
   "version": "1",
   "description": "Intercept Downloads of existing files",
   "permissions": [
-    "downloads"
+    "downloads",
+    "downloads.open"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "bg.js"
   },
   "action": {
     "default_popup": "popup.html",
