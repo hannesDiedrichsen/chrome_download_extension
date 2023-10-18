@@ -1,5 +1,6 @@
 // TODO: Store download path of user
-let absolute_path = "C:\\Users\\hanne\\Downloads\\";
+const download_folder_path = "C:\\Users\\felix\\Downloads\\";
+let absolute_path = download_folder_path
 chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
     // PDFs will always be overwritten to make PDF downloads smooth
     // File conflicts will open a prompt to change filename
@@ -28,6 +29,8 @@ chrome.downloads.onChanged.addListener(function(change) {
         console.log("OPEN PDF NOW")
 
         chrome.tabs.create({ url: absolute_path});
+        // reset the absolute_path to the download_folder_path
+        absolute_path = download_folder_path
     }
 });
 
