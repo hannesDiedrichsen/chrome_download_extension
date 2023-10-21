@@ -18,14 +18,10 @@ document.getElementById('saveButton').addEventListener('click', function() {
 chrome.storage.local.get('path').then(function(result) {
     if (result.path !== undefined) {
         console.log(result);
-        document.getElementById("path").remove();
-        let heading = document.createElement("h1");
-        let content = document.createElement("main");
-        heading.textContent = "Überschrift";
-        content.textContent = "Downloadpath: " + result["path"];
-        let body = document.querySelector("body")
-        body.appendChild(heading);
-        body.appendChild(content);
+        document.getElementById("directoryInput").placeholder=result["path"];
+        document.getElementById("title").innerText = "Ready to Go!";
+        document.getElementById("saveButton").innerText = "Edit Path";
+        document.getElementById("pathHint").innerText = "Current Path:";
     } else {
         console.log("Value does not exist");
     }
