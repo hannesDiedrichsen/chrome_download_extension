@@ -1,18 +1,16 @@
-// TODO: Store download path of user
-const download_folder_path = "C:\\Users\\felix\\Downloads\\";
-let absolute_path = download_folder_path
+let exp_filename = download_folder_path
 chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
     // PDFs will always be overwritten to make PDF downloads smooth
     // File conflicts will open a prompt to change filename
     if (item.filename.endsWith('.pdf')) {
         console.log("Alaarm PDF!!!")
-        absolute_path += item.filename;
+        exp_filename = item.filename;
         suggest({
             filename: item.filename,
             conflictAction: 'overwrite'
         })
     } else {
-        console.log(item.filename)
+        console.log(item.filename);
 
         suggest({
             filename: item.filename,
@@ -25,12 +23,17 @@ chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
 // Open downloaded PDF
 // chrome.tabs.create({ url: download_folder + filename }); to open the file
 chrome.downloads.onChanged.addListener(function(change) {
-    if (change.state && change.state.current === "complete" && absolute_path.endsWith('.pdf')) {
-        console.log("OPEN PDF NOW")
+    if (change.state && change.state.current === "complete" && exp_filename.endsWith('.pdf')) {
+        // Check if Path is set
+        chrome.storage.local.get('path').then(function(result) {
+            if (result.my_key !== undefined) {
+                console.log("OPEN PDF NOW")
 
-        chrome.tabs.create({ url: absolute_path});
-        // reset the absolute_path to the download_folder_path
-        absolute_path = download_folder_path
+                chrome.tabs.create({ url: result["path"] + exp_filename});
+            } else {
+                // TODO: Open popup and let user set his download path
+            }
+        });
     }
 });
 

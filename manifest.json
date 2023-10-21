@@ -5,7 +5,8 @@
   "description": "Intercept Downloads of existing files",
   "permissions": [
     "downloads",
-    "downloads.open"
+    "downloads.open",
+    "storage"
   ],
   "background": {
     "service_worker": "bg.js"

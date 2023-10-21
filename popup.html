@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Download Manager</title>
-    <link rel="stylesheet" type="text/css" href="popup.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloadmanager-Einstellungen</title>
+    <link href="popup.css" rel="stylesheet">
 </head>
 <body>
-<div class="popup-content">
-    <h1>Moin Meister</h1>
-    <h3>Recent Downloads</h3>
-    <ul id="ul1">
-    </ul>
+
+<div id="path">
+    <h2>Downloadpfad-Einstellungen</h2>
+
+    <label for="directoryInput">Downloadpfad:</label>
+    <input type="text" id="directoryInput" webkitdirectory placeholder="C:/Users/userName/Downloads/">
+
+    <button class="button" id="saveButton">Speichern</button>
 </div>
+
+
 
 <script src="popup.js"></script>
 </body>
 </html>
+
