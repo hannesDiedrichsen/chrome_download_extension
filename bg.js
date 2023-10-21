@@ -1,4 +1,4 @@
-let exp_filename = download_folder_path
+let exp_filename;
 chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
     // PDFs will always be overwritten to make PDF downloads smooth
     // File conflicts will open a prompt to change filename
@@ -26,12 +26,13 @@ chrome.downloads.onChanged.addListener(function(change) {
     if (change.state && change.state.current === "complete" && exp_filename.endsWith('.pdf')) {
         // Check if Path is set
         chrome.storage.local.get('path').then(function(result) {
-            if (result.my_key !== undefined) {
+            if (result.path !== undefined) {
                 console.log("OPEN PDF NOW")
 
-                chrome.tabs.create({ url: result["path"] + exp_filename});
+                chrome.tabs.create({ url: result["path"] + '\\' + exp_filename});
             } else {
                 // TODO: Open popup and let user set his download path
+                console.log("Kein Path")
             }
         });
     }
