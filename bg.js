@@ -22,14 +22,14 @@ chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
 
 // Open downloaded PDF
 // chrome.tabs.create({ url: download_folder + filename }); to open the file
-chrome.downloads.onChanged.addListener(function(change) {
+chrome.downloads.onChanged.addListener(function (change) {
     if (change.state && change.state.current === "complete" && exp_filename.endsWith('.pdf')) {
         // Check if Path is set
-        chrome.storage.local.get('path').then(function(result) {
+        chrome.storage.local.get('path').then(function (result) {
             if (result.path !== undefined) {
                 console.log("OPEN PDF NOW")
 
-                chrome.tabs.create({ url: result["path"] + '\\' + exp_filename});
+                chrome.tabs.create({url: result["path"] + '\\' + exp_filename});
             } else {
                 // TODO: Open popup and let user set his download path
                 console.log("Kein Path")
